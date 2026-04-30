@@ -14,8 +14,8 @@
 struct core_ps;
 
 struct core_ps_impl {
-	void (*attach)(struct core_ps *ps, void *topic, void const *user);
-	void (*detach)(struct core_ps *ps, void *topic, void const *user);
+	void (*attach)(struct core_ps *ps, void *topic, const void *user);
+	void (*detach)(struct core_ps *ps, void *topic, const void *user);
 	void (*publish)(struct core_ps *ps, void *topic);
 };
 
@@ -24,9 +24,9 @@ struct core_ps {
 };
 
 void luna_ps_init(struct core_ps *ps, struct core_ps_impl *impl);
-void luna_subscribe(struct core_ps *ps, void *topic, void const *user);
-void luna_unsubscribe(struct core_ps *ps, void *topic, void const *user);
-void luna_publish(struct core_ps *ps, void *topic);
+void luna_ps_subscribe(struct core_ps *ps, void *topic, const void *user);
+void luna_ps_unsubscribe(struct core_ps *ps, void *topic, const void *user);
+void luna_ps_publish(struct core_ps *ps, void *topic);
 
 #endif
 
@@ -39,7 +39,7 @@ void luna_ps_init(struct core_ps *ps, struct core_ps_impl *impl)
 	ps->impl = *impl;
 }
 
-void luna_subscribe(struct core_ps *ps, void *topic, void const *user)
+void luna_ps_subscribe(struct core_ps *ps, void *topic, const void *user)
 {
 	LUNA_ASSERT(ps);
 	LUNA_ASSERT(user);
@@ -48,7 +48,7 @@ void luna_subscribe(struct core_ps *ps, void *topic, void const *user)
 	}
 }
 
-void luna_unsubscribe(struct core_ps *ps, void *topic, void const *user)
+void luna_ps_unsubscribe(struct core_ps *ps, void *topic, const void *user)
 {
 	LUNA_ASSERT(ps);
 	LUNA_ASSERT(user);
@@ -57,7 +57,7 @@ void luna_unsubscribe(struct core_ps *ps, void *topic, void const *user)
 	}
 }
 
-void luna_publish(struct core_ps *ps, void *topic)
+void luna_ps_publish(struct core_ps *ps, void *topic)
 {
 	LUNA_ASSERT(ps);
 	if (ps->impl.publish) {
