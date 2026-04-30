@@ -23,6 +23,11 @@ struct core_ps {
 	struct core_ps_impl impl;
 };
 
+void luna_ps_init(struct core_ps *ps, struct core_ps_impl *impl);
+void luna_subscribe(struct core_ps *ps, void *topic, void const *user);
+void luna_unsubscribe(struct core_ps *ps, void *topic, void const *user);
+void luna_publish(struct core_ps *ps, void *topic);
+
 #endif
 
 #ifdef LUNA_PS_IMPLEMENTATION
