@@ -8,7 +8,7 @@ void luna_ps_init(struct luna_ps *ps, struct luna_bus *bus)
 	ps->bus = *bus;
 }
 
-void luna_ps_subscribe(struct luna_ps *ps, void *topic, const void *user)
+void luna_ps_subscribe(struct luna_ps *ps, const void *topic, const void *user)
 {
 	LUNA_PS_ASSERT(ps);
 	LUNA_PS_ASSERT(user);
@@ -17,7 +17,7 @@ void luna_ps_subscribe(struct luna_ps *ps, void *topic, const void *user)
 	}
 }
 
-void luna_ps_unsubscribe(struct luna_ps *ps, void *topic, const void *user)
+void luna_ps_unsubscribe(struct luna_ps *ps, const void *topic, const void *user)
 {
 	LUNA_PS_ASSERT(ps);
 	LUNA_PS_ASSERT(user);
@@ -26,7 +26,7 @@ void luna_ps_unsubscribe(struct luna_ps *ps, void *topic, const void *user)
 	}
 }
 
-void luna_ps_publish(struct luna_ps *ps, void *topic)
+void luna_ps_publish(struct luna_ps *ps, const void *topic)
 {
 	LUNA_PS_ASSERT(ps);
 	if (ps->bus.publish) {
