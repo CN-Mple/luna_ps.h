@@ -16,7 +16,7 @@ struct luna_ps;
 struct luna_bus {
 	void (*attach)(struct luna_ps *ps, const void *topic, const void *user);
 	void (*detach)(struct luna_ps *ps, const void *topic, const void *user);
-	void (*publish)(struct luna_ps *ps, const void *topic);
+	void (*publish)(struct luna_ps *ps, const void *topic, void *data);
 };
 
 struct luna_ps {
@@ -26,6 +26,6 @@ struct luna_ps {
 void luna_ps_init(struct luna_ps *ps, struct luna_bus *bus);
 void luna_ps_attach(struct luna_ps *ps, const void *topic, const void *user);
 void luna_ps_detach(struct luna_ps *ps, const void *topic, const void *user);
-void luna_ps_publish(struct luna_ps *ps, const void *topic);
+void luna_ps_publish(struct luna_ps *ps, const void *topic, void *data);
 
 #endif

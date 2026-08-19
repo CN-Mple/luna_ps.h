@@ -26,10 +26,10 @@ void luna_ps_detach(struct luna_ps *ps, const void *topic, const void *user)
 	}
 }
 
-void luna_ps_publish(struct luna_ps *ps, const void *topic)
+void luna_ps_publish(struct luna_ps *ps, const void *topic, void *data)
 {
 	LUNA_PS_ASSERT(ps);
 	if (ps->bus.publish) {
-		ps->bus.publish(ps, topic);
+		ps->bus.publish(ps, topic, data);
 	}
 }
